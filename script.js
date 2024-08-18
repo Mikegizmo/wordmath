@@ -1,15 +1,16 @@
-const question = document.getElementById('question');
-const answer = document.getElementById('answer');
+const question = document.querySelector('.question');
+const answer = document.querySelector('.answer');
 
 const checkButton = document.querySelector('.check');
 const nextButton = document.querySelector('.next');
 
 checkButton.addEventListener('click', () => {
-  console.log("You clicked the check button");
+  answer.style.display = 'block';
 });
 
 nextButton.addEventListener('click', () => {
-  console.log("You clicked the next button");
+  getRandomProblem();
+  answer.style.display = 'none';
 });
 
 const addition = 
@@ -56,13 +57,39 @@ const addition =
     }
   ];
 
-  question.innerHTML = `${addition[0].termWord} plus ${addition[1].termWord} (${addition[0].termNumber} + ${addition[1].termNumber})`;
+  const sumList = 
+  [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+    "thirteen",
+    "fourteen",
+    "fifteen",
+    "sixteen",
+    "seventeen",
+    "eighteen",
+    "nineteen",
+    "twenty"
+  ];
 
-  console.log(addition[0].termNumber + addition[1].termNumber);
+const getRandomProblem = () => {
+  const addend1 = Math.floor(Math.random() * addition.length);
+  const addend2 = Math.floor(Math.random() * addition.length);
 
-  const sum = addition[0].termNumber + addition[1].termNumber;
+  question.innerHTML = `${addition[addend1].termWord} plus ${addition[addend2].termWord} (${addition[addend1].termNumber} + ${addition[addend2].termNumber})`;
+
+  const sum = addition[addend1].termNumber + addition[addend2].termNumber;
   
-  const sumWord = addition[sum - 1].termWord;
+  const sumWord = sumList[sum - 1];
 
   answer.innerHTML = `${sumWord} (${sum})`;
-  
+};
