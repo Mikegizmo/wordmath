@@ -1,3 +1,5 @@
+const termsJson = './terms.json';
+
 const question = document.querySelector('.question');
 const answer = document.querySelector('.answer');
 
@@ -9,87 +11,70 @@ checkButton.addEventListener('click', () => {
 });
 
 nextButton.addEventListener('click', () => {
-  getRandomProblem();
+  getRandomProblem2();
   answer.style.display = 'none';
 });
 
-const addition = 
-  [
-    {
-      termWord: 'one',
-      termNumber: 1
-    },
-    {
-      termWord: 'two',
-      termNumber: 2
-    },
-    {
-      termWord: 'three',
-      termNumber: 3
-    },
-    {
-      termWord: 'four',
-      termNumber: 4
-    },
-    {
-      termWord: 'five',
-      termNumber: 5
-    },
-    {
-      termWord: 'six',
-      termNumber: 6
-    },
-    {
-      termWord: 'seven',
-      termNumber: 7
-    },
-    {
-      termWord: 'eight',
-      termNumber: 8
-    },
-    {
-      termWord: 'nine',
-      termNumber: 9
-    },
-    {
-      termWord: 'ten',
-      termNumber: 10
-    }
-  ];
+const sumList = 
+[
+  "zero",
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+  "ten",
+  "eleven",
+  "twelve",
+  "thirteen",
+  "fourteen",
+  "fifteen",
+  "sixteen",
+  "seventeen",
+  "eighteen",
+  "nineteen",
+  "twenty",
+  "twenty-one",
+  "twenty-two",
+  "twenty-two",
+  "twenty-three",
+  "twenty-four"
+];
 
-  const sumList = 
-  [
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
-    "ten",
-    "eleven",
-    "twelve",
-    "thirteen",
-    "fourteen",
-    "fifteen",
-    "sixteen",
-    "seventeen",
-    "eighteen",
-    "nineteen",
-    "twenty"
-  ];
+async function getRandomProblem() {
+  const response = await fetch(termsJson);
+  const terms = await response.json();
 
-const getRandomProblem = () => {
-  const addend1 = Math.floor(Math.random() * addition.length);
-  const addend2 = Math.floor(Math.random() * addition.length);
+  const addend1 = Math.floor(Math.random() * terms.length);
+  const addend2 = Math.floor(Math.random() * terms.length);
 
-  question.innerHTML = `${addition[addend1].termWord} plus ${addition[addend2].termWord} (${addition[addend1].termNumber} + ${addition[addend2].termNumber})`;
+  question.innerHTML = `${terms[addend1].termWord} plus ${terms[addend2].termWord} (${terms[addend1].termNumber} + ${terms[addend2].termNumber})`;
 
-  const sum = addition[addend1].termNumber + addition[addend2].termNumber;
+  const sum = terms[addend1].termNumber + terms[addend2].termNumber;
   
-  const sumWord = sumList[sum - 1];
+  const sumWord = sumList[sum];
+
+  answer.innerHTML = `${sumWord} (${sum})`;
+};
+
+async function getRandomProblem2() {
+  const response = await fetch(termsJson);
+  const terms = await response.json();
+
+  let minuend = Math.floor(Math.random() * terms.length);
+  let subtrahend = Math.floor(Math.random() * terms.length);
+
+  subtrahend > minuend ? [subtrahend, minuend] = [minuend, subtrahend] : true;
+
+  question.innerHTML = `${terms[minuend].termWord} minus ${terms[subtrahend].termWord} (${terms[minuend].termNumber} - ${terms[subtrahend].termNumber})`;
+
+  const sum = terms[minuend].termNumber - terms[subtrahend].termNumber;
+  
+  const sumWord = sumList[sum];
 
   answer.innerHTML = `${sumWord} (${sum})`;
 };

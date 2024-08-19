@@ -1,0 +1,54 @@
+[
+  {
+    "termWord": "zero",
+    "termNumber": 0
+  }, 
+  {
+    "termWord": "one",
+    "termNumber": 1
+  }, 
+  {
+    "termWord": "two",
+    "termNumber": 2
+  }, 
+  {
+    "termWord": "three",
+    "termNumber": 3
+  }, 
+  {
+    "termWord": "four",
+    "termNumber": 4
+  }, 
+  {
+    "termWord": "five",
+    "termNumber": 5
+  }, 
+  {
+    "termWord": "six",
+    "termNumber": 6
+  }, 
+  {
+    "termWord": "seven",
+    "termNumber": 7
+  }, 
+  {
+    "termWord": "eight",
+    "termNumber": 8
+  }, 
+  {
+    "termWord": "nine",
+    "termNumber": 9
+  }, 
+  {
+    "termWord": "ten",
+    "termNumber": 10
+  }, 
+  {
+    "termWord": "eleven",
+    "termNumber": 11
+  }, 
+  {
+    "termWord": "twelve",
+    "termNumber": 12
+  }
+]
