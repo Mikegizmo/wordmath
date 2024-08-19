@@ -58,6 +58,15 @@ h1 {
   margin: 0 2rem;
 }
 
+.multiply {
+  padding: 1.25rem 2rem;
+  border: solid 3px #682043;
+  border-radius: 0.5rem;
+  color: #9bc8f2;
+  font-size: 1.5rem;
+  margin: 0 2rem;
+}
+
 .check {
   padding: 1.25rem 2rem;
   border: solid 3px #682043;
@@ -79,6 +88,16 @@ h1 {
 }
 
 .nextSub {
+  padding: 1.25rem 2rem;
+  border: solid 3px #682043;
+  border-radius: 0.5rem;
+  color: #9bc8f2;
+  font-size: 1.5rem;
+  margin: 0 2rem;
+  display: none;
+}
+
+.nextMulti {
   padding: 1.25rem 2rem;
   border: solid 3px #682043;
   border-radius: 0.5rem;

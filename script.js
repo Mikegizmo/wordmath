@@ -1,19 +1,23 @@
 const termsJson = './terms.json';
+import Answers from './answers.js';
 
 const question = document.querySelector('.question');
 const answer = document.querySelector('.answer');
 
 const addButton = document.querySelector('.addition');
 const subtractButton = document.querySelector('.subtraction');
+const multiplyButton = document.querySelector('.multiply');
 const checkNext = document.querySelector('.checkNext');
 const checkButton = document.querySelector('.check');
 const nextAddButton = document.querySelector('.nextAdd');
 const nextSubButton = document.querySelector('.nextSub');
+const nextMultiButton = document.querySelector('.nextMulti');
 const startOverButton = document.querySelector('.startOver');
 
 addButton.addEventListener('click', () => {
   addButton.style.display = 'none';
   subtractButton.style.display = 'none';
+  multiplyButton.style.display = 'none';
   question.style.display = 'block';
   checkNext.style.display = 'flex';
   checkButton.style.display = 'flex';
@@ -26,6 +30,7 @@ addButton.addEventListener('click', () => {
 subtractButton.addEventListener('click', () => {
   addButton.style.display = 'none';
   subtractButton.style.display = 'none';
+  multiplyButton.style.display = 'none';
   question.style.display = 'block';
   checkNext.style.display = 'flex';
   checkButton.style.display = 'flex';
@@ -33,6 +38,19 @@ subtractButton.addEventListener('click', () => {
   startOverButton.style.display = 'flex';
 
   getRandomSubtraction();
+});
+
+multiplyButton.addEventListener('click', () => {
+  addButton.style.display = 'none';
+  subtractButton.style.display = 'none';
+  multiplyButton.style.display = 'none';
+  question.style.display = 'block';
+  checkNext.style.display = 'flex';
+  checkButton.style.display = 'flex';
+  nextMultiButton.style.display = 'inline-flex';
+  startOverButton.style.display = 'flex';
+
+  getRandomMultiplication();
 });
 
 checkButton.addEventListener('click', () => {
@@ -49,39 +67,14 @@ nextSubButton.addEventListener('click', () => {
   answer.style.display = 'none';
 });
 
+nextMultiButton.addEventListener('click', () => {
+  getRandomMultiplication();
+  answer.style.display = 'none';
+});
+
 startOverButton.addEventListener('click', () => {
   location.reload();
-})
-
-const answerList = 
-[
-  "zero",
-  "one",
-  "two",
-  "three",
-  "four",
-  "five",
-  "six",
-  "seven",
-  "eight",
-  "nine",
-  "ten",
-  "eleven",
-  "twelve",
-  "thirteen",
-  "fourteen",
-  "fifteen",
-  "sixteen",
-  "seventeen",
-  "eighteen",
-  "nineteen",
-  "twenty",
-  "twenty-one",
-  "twenty-two",
-  "twenty-two",
-  "twenty-three",
-  "twenty-four"
-];
+});
 
 async function getRandomAddition() {
   const response = await fetch(termsJson);
@@ -94,7 +87,7 @@ async function getRandomAddition() {
 
   const sum = terms[addend1].termNumber + terms[addend2].termNumber;
   
-  const sumWord = answerList[sum];
+  const sumWord = Answers[sum];
 
   answer.innerHTML = `${sumWord} (${sum})`;
 };
@@ -110,9 +103,25 @@ async function getRandomSubtraction() {
 
   question.innerHTML = `${terms[minuend].termWord} minus ${terms[subtrahend].termWord} (${terms[minuend].termNumber} - ${terms[subtrahend].termNumber})`;
 
-  const sum = terms[minuend].termNumber - terms[subtrahend].termNumber;
+  const difference = terms[minuend].termNumber - terms[subtrahend].termNumber;
   
-  const sumWord = answerList[sum];
+  const differenceWord = Answers[difference];
 
-  answer.innerHTML = `${sumWord} (${sum})`;
+  answer.innerHTML = `${differenceWord} (${difference})`;
+};
+
+async function getRandomMultiplication() {
+  const response = await fetch(termsJson);
+  const terms = await response.json();
+
+  const multiplicand = Math.floor(Math.random() * terms.length);
+  const multiplier = Math.floor(Math.random() * terms.length);
+
+  question.innerHTML = `${terms[multiplicand].termWord} times ${terms[multiplier].termWord} (${terms[multiplicand].termNumber} x ${terms[multiplier].termNumber})`;
+
+  const product = terms[multiplicand].termNumber * terms[multiplier].termNumber;
+  
+  const productWord = Answers[product];
+
+  answer.innerHTML = `${productWord} (${product})`;
 };
