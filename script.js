@@ -3,19 +3,57 @@ const termsJson = './terms.json';
 const question = document.querySelector('.question');
 const answer = document.querySelector('.answer');
 
+const addButton = document.querySelector('.addition');
+const subtractButton = document.querySelector('.subtraction');
+const checkNext = document.querySelector('.checkNext');
 const checkButton = document.querySelector('.check');
-const nextButton = document.querySelector('.next');
+const nextAddButton = document.querySelector('.nextAdd');
+const nextSubButton = document.querySelector('.nextSub');
+const startOverButton = document.querySelector('.startOver');
+
+addButton.addEventListener('click', () => {
+  addButton.style.display = 'none';
+  subtractButton.style.display = 'none';
+  question.style.display = 'block';
+  checkNext.style.display = 'flex';
+  checkButton.style.display = 'flex';
+  nextAddButton.style.display = 'inline-flex';
+  startOverButton.style.display = 'flex';
+
+  getRandomAddition();
+});
+
+subtractButton.addEventListener('click', () => {
+  addButton.style.display = 'none';
+  subtractButton.style.display = 'none';
+  question.style.display = 'block';
+  checkNext.style.display = 'flex';
+  checkButton.style.display = 'flex';
+  nextSubButton.style.display = 'inline-flex';
+  startOverButton.style.display = 'flex';
+
+  getRandomSubtraction();
+});
 
 checkButton.addEventListener('click', () => {
   answer.style.display = 'block';
 });
 
-nextButton.addEventListener('click', () => {
-  getRandomProblem2();
+nextAddButton.addEventListener('click', () => {
+  getRandomAddition();
   answer.style.display = 'none';
 });
 
-const sumList = 
+nextSubButton.addEventListener('click', () => {
+  getRandomSubtraction();
+  answer.style.display = 'none';
+});
+
+startOverButton.addEventListener('click', () => {
+  location.reload();
+})
+
+const answerList = 
 [
   "zero",
   "one",
@@ -45,7 +83,7 @@ const sumList =
   "twenty-four"
 ];
 
-async function getRandomProblem() {
+async function getRandomAddition() {
   const response = await fetch(termsJson);
   const terms = await response.json();
 
@@ -56,12 +94,12 @@ async function getRandomProblem() {
 
   const sum = terms[addend1].termNumber + terms[addend2].termNumber;
   
-  const sumWord = sumList[sum];
+  const sumWord = answerList[sum];
 
   answer.innerHTML = `${sumWord} (${sum})`;
 };
 
-async function getRandomProblem2() {
+async function getRandomSubtraction() {
   const response = await fetch(termsJson);
   const terms = await response.json();
 
@@ -74,7 +112,7 @@ async function getRandomProblem2() {
 
   const sum = terms[minuend].termNumber - terms[subtrahend].termNumber;
   
-  const sumWord = sumList[sum];
+  const sumWord = answerList[sum];
 
   answer.innerHTML = `${sumWord} (${sum})`;
 };
