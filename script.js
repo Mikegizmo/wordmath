@@ -6,7 +6,7 @@ const answer = document.querySelector('.answer');
 
 const addButton = document.querySelector('.addition');
 const subtractButton = document.querySelector('.subtraction');
-const multiplyButton = document.querySelector('.multiply');
+const multiplyButton = document.querySelector('.multiplication');
 const checkNext = document.querySelector('.checkNext');
 const checkButton = document.querySelector('.check');
 const nextAddButton = document.querySelector('.nextAdd');
