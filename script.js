@@ -1,4 +1,6 @@
 import Terms from './terms.js';
+let width = screen.width;
+let height = screen.height;
 
 const question = document.querySelector('.question');
 const answer = document.querySelector('.answer');
@@ -118,13 +120,17 @@ function getRandomAddition() {
   const addend1 = Math.floor(Math.random() * (high + 1));
   const addend2 = Math.floor(Math.random() * (high + 1));
 
-  question.innerHTML = `${Terms[addend1]} plus ${Terms[addend2]} (${addend1} + ${addend2})`;
+  width < height ? 
+    question.innerHTML = `${Terms[addend1]} plus ${Terms[addend2]}<br />(${addend1} + ${addend2})`:
+    question.innerHTML = `${Terms[addend1]} plus ${Terms[addend2]} (${addend1} + ${addend2})`;
 
   const sum = addend1 + addend2;
   
   const sumWord = Terms[sum];
 
-  answer.innerHTML = `${sumWord} (${sum})`;
+  width < height ?
+    answer.innerHTML = `${sumWord}<br />(${sum})`:
+    answer.innerHTML = `${sumWord} (${sum})`;
 };
 
 // Subtraction functions
@@ -169,13 +175,17 @@ function getRandomSubtraction() {
 
   subtrahend > minuend ? [subtrahend, minuend] = [minuend, subtrahend] : true;
 
-  question.innerHTML = `${Terms[minuend]} minus ${Terms[subtrahend]} (${minuend} - ${subtrahend})`;
+  width < height ?
+    question.innerHTML = `${Terms[minuend]} minus ${Terms[subtrahend]}<br />(${minuend} - ${subtrahend})`:
+    question.innerHTML = `${Terms[minuend]} minus ${Terms[subtrahend]} (${minuend} - ${subtrahend})`;
 
   const difference = minuend - subtrahend;
   
   const differenceWord = Terms[difference];
 
-  answer.innerHTML = `${differenceWord} (${difference})`;
+  width < height ?
+    answer.innerHTML = `${differenceWord}<br />(${difference})`:
+    answer.innerHTML = `${differenceWord} (${difference})`;
 };
 
 // Multiplication functions
@@ -218,11 +228,15 @@ function getRandomMultiplication() {
   const multiplicand = Math.floor(Math.random() * (high + 1));
   const multiplier = Math.floor(Math.random() * (high + 1));
 
-  question.innerHTML = `${Terms[multiplicand]} times ${Terms[multiplier]} (${multiplicand} x ${multiplier})`;
+  width < height ?
+    question.innerHTML = `${Terms[multiplicand]} times ${Terms[multiplier]}<br />(${multiplicand} x ${multiplier})`:
+    question.innerHTML = `${Terms[multiplicand]} times ${Terms[multiplier]} (${multiplicand} x ${multiplier})`;
 
   const product = multiplicand * multiplier;
   
   const productWord = Terms[product];
 
-  answer.innerHTML = `${productWord} (${product})`;
+  width < height ?
+    answer.innerHTML = `${productWord}<br />(${product})`:
+    answer.innerHTML = `${productWord} (${product})`;
 };
