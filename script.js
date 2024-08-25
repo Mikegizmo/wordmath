@@ -35,7 +35,6 @@ addButton.addEventListener('click', () => {
 
   numberLimits.style.display = 'flex';
   numberLimits.style.flexDirection = 'column';
-  limit0to100.style.display = 'none';
 
   additionLimits();
 });
@@ -102,6 +101,12 @@ function additionLimits() {
   });
   limit0to50.addEventListener('click', () => {
     high = 50;
+    numberLimits.style.display = 'none';
+    getRandomAddition();
+    displayAddCheckBtns();
+  });
+  limit0to100.addEventListener('click', () => {
+    high = 100;
     numberLimits.style.display = 'none';
     getRandomAddition();
     displayAddCheckBtns();
