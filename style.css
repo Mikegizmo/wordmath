@@ -65,9 +65,17 @@ h1 {
   display: none;
 }
 
+.multiLimits {
+  display: none;
+}
+
+.limit0to6,
 .limit0to10,
+.limit0to12,
+.limit0to15,
 .limit0to20,
-.limit0to50 {
+.limit0to50,
+.limit0to100 {
   padding: 1.25rem 2rem;
   border: solid 3px #682043;
   border-radius: 0.5rem;
