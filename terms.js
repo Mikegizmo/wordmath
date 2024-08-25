@@ -1,4 +1,4 @@
-const Answers = [
+const Terms = [
   "zero",
   "one",
   "two",
@@ -46,7 +46,7 @@ const Answers = [
   "forty-four",
   "forty-five",
   "forty-six",
-  "firty-seven",
+  "forty-seven",
   "forty-eight",
   "forty-nine",
   "fifty",
@@ -146,4 +146,4 @@ const Answers = [
   "one hundred forty-four"
 ];
 
-export default Answers;
+export default Terms;

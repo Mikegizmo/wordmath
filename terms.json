@@ -50,5 +50,37 @@
   {
     "termWord": "twelve",
     "termNumber": 12
+  },
+  {
+    "termWord": "thirteen",
+    "termNumber": 13
+  },
+  {
+    "termWord": "fourteen",
+    "termNumber": 14
+  },
+  {
+    "termWord": "fifteen",
+    "termNumber": 15
+  },
+  {
+    "termWord": "sixteen",
+    "termNumber": 16
+  },
+  {
+    "termWord": "seventeen",
+    "termNumber": 17
+  },
+  {
+    "termWord": "eighteen",
+    "termNumber": 18
+  },
+  {
+    "termWord": "nineteen",
+    "termNumber": 19
+  },
+  {
+    "termWord": "twenty",
+    "termNumber": 20
   }
 ]

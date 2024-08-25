@@ -1,5 +1,5 @@
 const termsJson = './terms.json';
-import Answers from './answers.js';
+import Terms from './terms.js';
 
 const question = document.querySelector('.question');
 const answer = document.querySelector('.answer');
@@ -7,6 +7,12 @@ const answer = document.querySelector('.answer');
 const addButton = document.querySelector('.addition');
 const subtractButton = document.querySelector('.subtraction');
 const multiplyButton = document.querySelector('.multiplication');
+
+const numberLimits = document.querySelector('.numberLimits');
+const limit0to10 = document.querySelector('.limit0to10');
+const limit0to20 = document.querySelector('.limit0to20');
+const limit0to50 = document.querySelector('.limit0to50');
+
 const checkNext = document.querySelector('.checkNext');
 const checkButton = document.querySelector('.check');
 const nextAddButton = document.querySelector('.nextAdd');
@@ -14,18 +20,37 @@ const nextSubButton = document.querySelector('.nextSub');
 const nextMultiButton = document.querySelector('.nextMulti');
 const startOverButton = document.querySelector('.startOver');
 
+// addButton.addEventListener('click', () => {
+//   addButton.style.display = 'none';
+//   subtractButton.style.display = 'none';
+//   multiplyButton.style.display = 'none';
+//   question.style.display = 'block';
+//   checkNext.style.display = 'flex';
+//   checkButton.style.display = 'flex';
+//   nextAddButton.style.display = 'inline-flex';
+//   startOverButton.style.display = 'flex';
+
+//   getRandomAddition();
+// });
+
 addButton.addEventListener('click', () => {
   addButton.style.display = 'none';
   subtractButton.style.display = 'none';
   multiplyButton.style.display = 'none';
+
+  numberLimits.style.display = 'flex';
+  numberLimits.style.flexDirection = 'column';
+
+  additionLimits();
+});
+
+const displayCheckBtns = () => {
   question.style.display = 'block';
   checkNext.style.display = 'flex';
   checkButton.style.display = 'flex';
   nextAddButton.style.display = 'inline-flex';
   startOverButton.style.display = 'flex';
-
-  getRandomAddition();
-});
+}
 
 subtractButton.addEventListener('click', () => {
   addButton.style.display = 'none';
@@ -76,18 +101,37 @@ startOverButton.addEventListener('click', () => {
   location.reload();
 });
 
-async function getRandomAddition() {
-  const response = await fetch(termsJson);
-  const terms = await response.json();
+let high;
+function additionLimits() { 
+  limit0to10.addEventListener('click', () => {
+    high = 10;
+    numberLimits.style.display = 'none';
+    getRandomAddition();
+    displayCheckBtns();
+  });
+  limit0to20.addEventListener('click', () => {
+    high = 20;
+    numberLimits.style.display = 'none';
+    getRandomAddition();
+    displayCheckBtns();
+  });
+  limit0to50.addEventListener('click', () => {
+    high = 50;
+    numberLimits.style.display = 'none';
+    getRandomAddition();
+    displayCheckBtns();
+  });
+}; 
 
-  const addend1 = Math.floor(Math.random() * terms.length);
-  const addend2 = Math.floor(Math.random() * terms.length);
+function getRandomAddition() {
+  const addend1 = Math.floor(Math.random() * (high + 1));
+  const addend2 = Math.floor(Math.random() * (high + 1));
 
-  question.innerHTML = `${terms[addend1].termWord} plus ${terms[addend2].termWord} (${terms[addend1].termNumber} + ${terms[addend2].termNumber})`;
+  question.innerHTML = `${Terms[addend1]} plus ${Terms[addend2]} (${addend1} + ${addend2})`;
 
-  const sum = terms[addend1].termNumber + terms[addend2].termNumber;
+  const sum = addend1 + addend2;
   
-  const sumWord = Answers[sum];
+  const sumWord = Terms[sum];
 
   answer.innerHTML = `${sumWord} (${sum})`;
 };
