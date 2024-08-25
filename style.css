@@ -74,6 +74,7 @@ h1 {
 .limit0to12,
 .limit0to15,
 .limit0to20,
+.limit0to20multi,
 .limit0to50,
 .limit0to100 {
   padding: 1.25rem 2rem;

@@ -8,8 +8,13 @@ const subtractButton = document.querySelector('.subtraction');
 const multiplyButton = document.querySelector('.multiplication');
 
 const numberLimits = document.querySelector('.numberLimits');
+const multiLimits = document.querySelector('.multiLimits');
+const limit0to6 = document.querySelector('.limit0to6');
 const limit0to10 = document.querySelector('.limit0to10');
+const limit0to12 = document.querySelector('.limit0to12');
+const limit0to15 = document.querySelector('.limit0to15');
 const limit0to20 = document.querySelector('.limit0to20');
+const limit0to20multi = document.querySelector('.limit0to20multi');
 const limit0to50 = document.querySelector('.limit0to50');
 const limit0to100 = document.querySelector('.limit0to100');
 
@@ -48,14 +53,11 @@ multiplyButton.addEventListener('click', () => {
   addButton.style.display = 'none';
   subtractButton.style.display = 'none';
   multiplyButton.style.display = 'none';
-  
-  question.style.display = 'block';
-  checkNext.style.display = 'flex';
-  checkButton.style.display = 'flex';
-  nextMultiButton.style.display = 'inline-flex';
-  startOverButton.style.display = 'flex';
 
-  getRandomMultiplication();
+  multiLimits.style.display = 'flex';
+  multiLimits.style.flexDirection = 'column';
+
+  multiplicationLimits();
 });
 
 checkButton.addEventListener('click', () => {
@@ -178,29 +180,29 @@ function getRandomSubtraction() {
 
 // Multiplication functions
 function multiplicationLimits() { 
-  limit0to10.addEventListener('click', () => {
+  limit0to6.addEventListener('click', () => {
     high = 6;
-    numberLimits.style.display = 'none';
+    multiLimits.style.display = 'none';
     getRandomMultiplication();
     displayMultiCheckBtns();
   });
-  limit0to20.addEventListener('click', () => {
+  limit0to12.addEventListener('click', () => {
     high = 12;
-    numberLimits.style.display = 'none';
+    multiLimits.style.display = 'none';
     getRandomMultiplication();
-    displayAddCheckBtns();
+    displayMultiCheckBtns();
   });
-  limit0to50.addEventListener('click', () => {
+  limit0to15.addEventListener('click', () => {
     high = 15;
-    numberLimits.style.display = 'none';
-    getRandomAddition();
-    displayAddCheckBtns();
+    multiLimits.style.display = 'none';
+    getRandomMultiplication();
+    displayMultiCheckBtns();
   });
-  limit0to20.addEventListener('click', () => {
+  limit0to20multi.addEventListener('click', () => {
     high = 20;
-    numberLimits.style.display = 'none';
-    getRandomAddition();
-    displayAddCheckBtns();
+    multiLimits.style.display = 'none';
+    getRandomMultiplication();
+    displayMultiCheckBtns();
   });
 };
 
@@ -212,18 +214,15 @@ const displayMultiCheckBtns = () => {
   startOverButton.style.display = 'flex';
 }
 
-async function getRandomMultiplication() {
-  const response = await fetch(termsJson);
-  const terms = await response.json();
+function getRandomMultiplication() {
+  const multiplicand = Math.floor(Math.random() * (high + 1));
+  const multiplier = Math.floor(Math.random() * (high + 1));
 
-  const multiplicand = Math.floor(Math.random() * terms.length);
-  const multiplier = Math.floor(Math.random() * terms.length);
+  question.innerHTML = `${Terms[multiplicand]} times ${Terms[multiplier]} (${multiplicand} x ${multiplier})`;
 
-  question.innerHTML = `${terms[multiplicand].termWord} times ${terms[multiplier].termWord} (${terms[multiplicand].termNumber} x ${terms[multiplier].termNumber})`;
-
-  const product = terms[multiplicand].termNumber * terms[multiplier].termNumber;
+  const product = multiplicand * multiplier;
   
-  const productWord = Answers[product];
+  const productWord = Terms[product];
 
   answer.innerHTML = `${productWord} (${product})`;
 };
